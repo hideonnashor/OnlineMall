@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, 
+                                 initial-scale=1.0, 
+                                 maximum-scale=1.0, 
+                                 user-scalable=no">
+<title>详情商品名称</title>
+<!-- Bootstrap -->
+<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<style type="text/css">
+.item-name {
+	font-size: 25px;
+}
+.item-price {
+	font-size: 25px;
+}
+.item-stock {
+	font-size: 25px;
+}
+.pur-quantity {
+	font-size: 25px;
+}
+.spinner {  
+  width: 100px;  
+}  
+.spinner input {  
+  text-align: right;  
+}  
+.left-btns {
+	float: right;
+}
+.input-group-btn-vertical {  
+  position: relative;  
+  white-space: nowrap;  
+  width: 1%;  
+  vertical-align: middle;  
+  display: table-cell;  
+}  
+.input-group-btn-vertical > .btn {  
+  display: block;  
+  float: none;  
+  width: 100%;  
+  max-width: 100%;  
+  padding: 8px;  
+  margin-left: -1px;  
+  position: relative;  
+  border-radius: 0;  
+}  
+.input-group-btn-vertical > .btn:first-child {  
+  border-top-right-radius: 4px;  
+}  
+.input-group-btn-vertical > .btn:last-child {  
+  margin-top: -2px;  
+  border-bottom-right-radius: 4px;  
+}  
+.input-group-btn-vertical i{  
+  position: absolute;  
+  top: 0;  
+  left: 4px;  
+}  
+</style>
+<!-- <link rel="stylesheet" type="text/css" href="http://localhost:8090/css/OnlineMallHome.css"> -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<div class="container" role="main">
+		<ol class="breadcrumb">
+			<li class="active"><a href="#">Home</a></li>
+			<!-- 用户已登陆 -->
+			<li><a href="#">Member center</a></li>
+			<li><a href="#">Sign out</a></li>
+			<!-- 用户未登陆 -->
+			<!-- <li><a href="#">Sign in</a></li>
+			<li><a href="#">Sign up</a></li> -->
+		</ol>
+	</div>
+	<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-6 column">
+			<div class="row clearfix">
+				<div class="col-md-12 column" style="margin-bottom: 20px;">
+					<img alt="140x140" src="https://img13.360buyimg.com/n1/s450x450_jfs/t23773/95/1528485963/238188/28991661/5b628383N9c13951c.jpg" class="img-rounded" />
+				</div>
+			</div>
+			<div class="preview-info col-md-12">
+				<div class="left-btns">
+					<a class="follow J-follow"href="#none">
+						关注
+					</a>
+					<a class="share J-share" href="#none">
+						分享
+					</a>
+					<a class="compare J-compare J_contrast" href="#none">
+						对比
+					</a>
+				</div>
+				<a class="right-btns" href="#">
+					举报
+				</a>
+			</div>
+		</div>
+		<div class="col-md-6 column">
+			<h3>
+				戴尔(DELL)灵越5680游戏台式电脑主机(八代i7-8700 Z370主板 8G 128GSSD+1T GTX1060 6G独显 蓝牙 无线)
+			</h3>
+			<dl>
+				<dt class="item-name">
+					Description
+				</dt>
+				<dd>
+					品牌： 戴尔（DELL）<br>
+					商品名称：戴尔Inspiron 5680-R19N8L<br>商品编号：7187263<br>商品毛重：14.2kg<br>商品产地：中国大陆<br>电脑形态：单主机<br>处理器：Intel i7<br>用途：游戏为主<br>优选服务：三年质保，上门服务<br>内存容量：8G<br>显卡：GTX1060 3G/6G<br>系统：Windows 10<br>硬盘容量：固态+机械
+				</dd>
+				<dt class="item-price">
+					价格
+				</dt>
+				<dd>
+					$1100
+				</dd>
+				<dt class="item-stock">
+					库存
+				</dt>
+				<dd>
+					200 <span style="font-weight: bold;font-size: 15px;">件</span>
+				</dd>
+				<dt class="pur-quantity">
+					购买数量
+				</dt>
+			 	<div class="input-group spinner">  
+					<input type="text" class="form-control" value="42">
+					<div class="input-group-btn-vertical">  
+						<button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>  
+						<button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>  
+					</div>  
+				</div> 
+			 	<button type="button" class="btn btn-default" style="margin-top: 15px;">加入购物车</button>
+		</div>
+	</div>
+</div>
+</body>
+</html>

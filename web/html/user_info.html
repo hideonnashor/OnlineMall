@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, 
+                                 initial-scale=1.0, 
+                                 maximum-scale=1.0, 
+                                 user-scalable=no">
+<title>个人中心</title>
+<!-- Bootstrap -->
+<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<!-- <link rel="stylesheet" type="text/css" href="http://localhost:8090/css/OnlineMallHome.css"> -->
+</style>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<img src="" alt="">
+	<div class="container" role="main">
+		<ol class="breadcrumb">
+			<li class="active"><a href="#">Home</a></li>
+			<!-- 用户已登陆 -->
+			<li><a href="#">Member center</a></li>
+			<li><a href="#">Sign out</a></li>
+			<!-- 用户未登陆 -->
+			<!-- <li><a href="#">Sign in</a></li>
+			<li><a href="#">Sign up</a></li> -->
+
+		</ol>
+	</div>
+	<div class="container">
+		<div class="row w ">
+			<div class="col-md-3 column">
+				<img class="img-thumbnail" src="https://blacktie.co/demo/victoria/assets/img/avatar.jpg" style="width: 200px;height: 200px;" />
+			</div>
+			<div class="col-md-5 column">
+				<iframe class="container" name="iframe" frameborder="0" width="100%" scrolling="no" marginheight="0" marginwidth="0" src="user_info_profile.html" style="width: 750px;height: 200px;">
+				</iframe>
+			</div>
+		</div>
+	</div>
+	<ul class="nav .nav-pills nav-stacked container">
+		<li role="presentation" class="active"><a href="user_info_profile.html" target="iframe">基本信息</a></li>
+		<li role="presentation"><a href="user_info_shoppingcart.html" target="iframe">购物车</a></li>
+		<li role="presentation"><a href="user_info_order.html" target="iframe">订单</a></li>
+		<li role="presentation"><a href="user_info_profile.html" target="iframe">修改信息</a></li>
+	</ul>
+</body>
+</html>
