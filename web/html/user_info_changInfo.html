@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, 
+                                 initial-scale=1.0, 
+                                 maximum-scale=1.0, 
+                                 user-scalable=no">
+<title>信息修改</title>
+<!-- Bootstrap -->
+<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<!-- <link rel="stylesheet" type="text/css" href="http://localhost:8090/css/OnlineMallHome.css"> -->
+
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#button-change").click(function(){
+		console.log("注册提交");
+		let content = $("#inputUsername").val();
+		let reg = /^[A-z0-9]+$/;
+		if (!content.match(reg)||content==0) {
+			alert("用户名只能是英文字母和数字或其组合");
+		};
+	})
+})
+</script>
+</head>
+<body>
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<form role="form">
+					<div class="form-group">
+						 <label">用户名</label><input class="form-control" id="inputUsername" type="text" />
+					</div>
+					<div class="form-group">
+						 <label>邮箱</label><input class="form-control" type="email" />
+					</div>
+					<div class="form-group">
+						 <labelrd1">电话</label><input class="form-control" type="text" />
+					</div>
+					<div class="form-group">
+						 <labelrd1">地址</label><input class="form-control" type="text" />
+					</div>
+					<div class="form-group">
+						 <labelrd1">密码</label><input class="form-control" type="password" />
+					</div>
+					<button type="submit" id="button-change" class="btn btn-default">提交修改</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
