@@ -6,6 +6,9 @@
         <element id="directory" name="classes">
           <element id="module-output" name="OnlineMall" />
         </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/mysql-connector-java-6.0.6.jar" />
+        </element>
       </element>
       <element id="javaee-facet-resources" facet="OnlineMall/web/Web" />
     </root>
