@@ -1,4 +1,4 @@
-package org.onlinemall.dao;
+package org.onlinemall.dao.util;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -15,10 +15,10 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.Properties;
 
-public class DBUtils {
+public class MySqlGetConnection implements DBGetConnection {
 
 //    日志
-    public static Logger logger = Logger.getLogger("DBUtils");
+    public static Logger logger = Logger.getLogger("MySqlGetConnection");
     static {
         logger.setLevel(Level.INFO);
     }
@@ -37,41 +37,43 @@ public class DBUtils {
 
     static{
         Properties pro = new Properties();
-        InputStream dbIn = DBUtils.class.getClassLoader().getResourceAsStream("org/onlinemall/dao/dbData.properties");
+        InputStream dbIn = MySqlGetConnection.class.getClassLoader().getResourceAsStream("org/onlinemall/dao/util/dbData.properties");
         try {
     //        read the data from property file
             pro.load(dbIn);
-            dbDriver=pro.getProperty("driver");
-            dbUrl=pro.getProperty("url");
-            dbUsername=pro.getProperty("username");
-            dbPassword=pro.getProperty("password");
+            dbDriver=pro.getProperty("mydriver");
+            dbUrl=pro.getProperty("myurl");
+            dbUsername=pro.getProperty("myusername");
+            dbPassword=pro.getProperty("mypassword");
             dbConnectionsize= Integer.parseInt(pro.getProperty("connectionsize"));
-            logger.info("read properties succeed");
+            logger.info("[loginfo]:read properties succeed");
     //        load the driver
             Class.forName(dbDriver);
             for (int i = 0; i < dbConnectionsize; i++) {
                 Connection conn = DriverManager.getConnection(dbUrl,dbUsername,dbPassword);
                 conns.add(conn);
             }
-            logger.info("connection initial");
+            logger.info("[loginfo]:connection initial");
         } catch (IOException | ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static Connection getConnection(){
+
+    @Override
+    public Connection getConnection(){
         if (conns.size() == 0) {
             throw new NullPointerException("run out of connections");
         }else {
             Connection conn = (Connection) conns.removeFirst();
-            return (Connection) Proxy.newProxyInstance(DBUtils.class.getClassLoader(), conn.getClass().getInterfaces(), new InvocationHandler() {
+            return (Connection) Proxy.newProxyInstance(MySqlGetConnection.class.getClassLoader(), conn.getClass().getInterfaces(), new InvocationHandler() {
                 @Override
                 public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                     if (!method.getName().equalsIgnoreCase("close")) {
                         return method.invoke(conn,args);
                     }else {
                         conns.add(conn);
-                        logger.info("connection return");
+                        logger.info("[loginfo]:connection return");
                         return null;
                     }
                 }

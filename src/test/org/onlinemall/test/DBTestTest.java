@@ -3,8 +3,8 @@ package test.org.onlinemall.test;
 import org.junit.Test; 
 import org.junit.Before; 
 import org.junit.After;
-import org.onlinemall.dao.DBUtils;
-import org.onlinemall.dao.UserDao;
+import org.onlinemall.dao.util.DBConnectionFactory;
+import org.onlinemall.dao.util.MySqlGetConnection;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -31,19 +31,16 @@ public void after() throws Exception {
 
 @Test
 public void dbConnect() throws SQLException {
-    Connection connection = DBUtils.getConnection();
+    Connection connection = new DBConnectionFactory().getConnection();
     try {
         Statement sta = connection.createStatement();
         ResultSet res = sta.executeQuery("select * from all_user");
         System.out.println(res.next());
-        System.out.println(res.getInt(1));
-        System.out.println(res.getString(2));
-        System.out.println(res.getString(3));
         System.out.println(res.getByte("customer_id"));
         res.close();
         sta.close();
     } catch (SQLException e) {
-        throw new SQLException("failed");
+        throw new SQLException("[failed");
     }finally {
         connection.close();
     }
