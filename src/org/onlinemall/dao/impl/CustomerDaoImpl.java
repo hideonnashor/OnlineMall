@@ -1,23 +1,24 @@
-package org.onlinemall.dao;
+package org.onlinemall.dao.impl;
 
+import org.onlinemall.dao.itf.CustomerDao;
 import org.onlinemall.domain.Customer;
 
 import java.util.List;
 
-public class CustomerDaoImpl implements Dao {
+public class CustomerDaoImpl implements CustomerDao {
 
     @Override
-    public void insertCustomer(Customer customer) throws Exception {
+    public void insert(Customer customer) throws Exception {
         String sql = "insert into all_user()";
     }
 
     @Override
-    public void updateCustomer(Customer customer) throws Exception {
+    public void update(Customer customer) throws Exception {
 
     }
 
     @Override
-    public void deletetCustomer(Customer customer) throws Exception {
+    public void deletet(Customer customer) throws Exception {
 
     }
 

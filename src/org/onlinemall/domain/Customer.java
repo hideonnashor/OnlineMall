@@ -2,52 +2,17 @@ package org.onlinemall.domain;
 
 public class Customer {
 
-    private String customerId;
-    private String customerName;
-    private String customerPassword;
-    private String customerProtrait;
-    private String customerEmail;
+    private int customerId;
     private String customerResidence;
     private String customerPhone;
+    private String customerIc;
 
-    public String getCustomerId() {
+    public int getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public void setCustomerId(int customerId) {
         this.customerId = customerId;
-    }
-
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    public String getCustomerPassword() {
-        return customerPassword;
-    }
-
-    public void setCustomerPassword(String customerPassword) {
-        this.customerPassword = customerPassword;
-    }
-
-    public String getCustomerProtrait() {
-        return customerProtrait;
-    }
-
-    public void setCustomerProtrait(String customerProtrait) {
-        this.customerProtrait = customerProtrait;
-    }
-
-    public String getCustomerEmail() {
-        return customerEmail;
-    }
-
-    public void setCustomerEmail(String customerEmail) {
-        this.customerEmail = customerEmail;
     }
 
     public String getCustomerResidence() {
@@ -64,5 +29,13 @@ public class Customer {
 
     public void setCustomerPhone(String customerPhone) {
         this.customerPhone = customerPhone;
+    }
+
+    public String getCustomerIc() {
+        return customerIc;
+    }
+
+    public void setCustomerIc(String customerIc) {
+        this.customerIc = customerIc;
     }
 }

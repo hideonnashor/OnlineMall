@@ -1,8 +1,12 @@
 package test.org.onlinemall.test; 
 
-import org.junit.Test; 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+import org.junit.Test;
 import org.junit.Before; 
 import org.junit.After;
+import org.onlinemall.dao.DaoFactory;
+import org.onlinemall.dao.itf.UserDao;
 import org.onlinemall.dao.util.DBConnectionFactory;
 import org.onlinemall.dao.util.MySqlGetConnection;
 
@@ -31,18 +35,16 @@ public void after() throws Exception {
 
 @Test
 public void dbConnect() throws SQLException {
-    Connection connection = new DBConnectionFactory().getConnection();
+    //    »’÷æ
+    Logger logger = Logger.getLogger("DBTestTest");
+    logger.setLevel(Level.INFO);
+
     try {
-        Statement sta = connection.createStatement();
-        ResultSet res = sta.executeQuery("select * from all_user");
-        System.out.println(res.next());
-        System.out.println(res.getByte("customer_id"));
-        res.close();
-        sta.close();
-    } catch (SQLException e) {
-        throw new SQLException("[failed");
-    }finally {
-        connection.close();
+        UserDao userDao = new DaoFactory().getUserDao();
+//        System.out.println(userDao.queryById(1).getUserEmail());
+        logger.info(userDao.queryByName("p90").getUserEmail());
+    } catch (Exception e) {
+        e.printStackTrace();
     }
 }
 }
