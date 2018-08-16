@@ -27,7 +27,7 @@ public class UserDaoImpl implements UserDao {
         String userPassword = user.getUserPassword();
         String userPortrait = user.getUserProtrait();
 //        危险的操作，待重构
-        Connection conn = new DBConnectionFactory().getConnection();
+        Connection conn = DBConnectionFactory.getDBConnectionFactory().getConnection();
     }
 
     @Override
@@ -44,7 +44,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User queryById(int userId) throws Exception {
 //        危险的操作
-        Connection conn = new DBConnectionFactory().getConnection();
+        Connection conn = DBConnectionFactory.getDBConnectionFactory().getConnection();
 
         return null;
     }
@@ -56,7 +56,7 @@ public class UserDaoImpl implements UserDao {
         ResultSet res = null;
 //        危险的操作
         try {
-            conn = new DBConnectionFactory().getConnection();
+            conn = DBConnectionFactory.getDBConnectionFactory().getConnection();
             String sql = "select * from user where user_id like "+"\""+userName+"\"";
             logger.info("sql:"+sql);
             preSta = conn.prepareStatement(sql);
