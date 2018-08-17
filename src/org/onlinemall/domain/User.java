@@ -2,15 +2,15 @@ package org.onlinemall.domain;
 
 public class User {
 
-    private int userId;
+    private String userId;
     private String userName;
     private String userPassword;
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

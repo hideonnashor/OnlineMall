@@ -21,7 +21,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void insert(User user) throws Exception {
-        int userId = user.getUserId();
+        String userId = user.getUserId();
         String userName = user.getUserName();
         String userEmail = user.getUserEmail();
         String userPassword = user.getUserPassword();
@@ -57,16 +57,14 @@ public class UserDaoImpl implements UserDao {
 //        危险的操作
         try {
             conn = DBConnectionFactory.getDBConnectionFactory().getConnection();
-            String sql = "select * from user where user_id like "+"\""+userName+"\"";
+            String sql = "select * from user where user_name like "+"\""+userName+"\"";
             logger.info("sql:"+sql);
             preSta = conn.prepareStatement(sql);
             res = preSta.executeQuery();
 
-            logger.info("resnext:"+res.next());
-
             while (res.next()){
                 user = new User();
-                user.setUserId(res.getInt("user_id"));
+                user.setUserId(res.getString("user_id"));
                 user.setUserName(res.getString("user_name"));
                 user.setUserEmail(res.getString("user_email"));
                 user.setUserPassword(res.getString("user_password"));
@@ -81,15 +79,55 @@ public class UserDaoImpl implements UserDao {
                 try {
                     preSta.close();
                 }finally {
-                    conn.close();
+                    try {
+                        conn.close();
+                    }finally {
+                        return user;
+                    }
                 }
             }
         }
-        return user;
     }
+
 //    使用邮箱查询
     public User queryByEmail(String userEmail) throws Exception{
-        return null;
+        User user = null;
+        Connection conn = null;
+        PreparedStatement preSta = null;
+        ResultSet res = null;
+
+        try {
+            conn = DBConnectionFactory.getDBConnectionFactory().getConnection();
+            String sql = "select * from user where user_email like "+"\""+userEmail+"\"";
+            logger.info("sql:"+sql);
+            preSta = conn.prepareStatement(sql);
+            res = preSta.executeQuery();
+
+            while (res.next()){
+                user = new User();
+                user.setUserId(res.getString("user_id"));
+                user.setUserName(res.getString("user_name"));
+                user.setUserEmail(res.getString("user_email"));
+                user.setUserPassword(res.getString("user_password"));
+                user.setUserPortrait(res.getString("user_portrait"));
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }finally {
+            try{
+                res.close();
+            }finally {
+                try {
+                    preSta.close();
+                }finally {
+                    try {
+                        conn.close();
+                    }finally {
+                        return user;
+                    }
+                }
+            }
+        }
     }
 
     @Override
