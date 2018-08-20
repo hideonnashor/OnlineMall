@@ -1,16 +1,23 @@
 package org.onlinemall.dao.impl;
 
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.MapHandler;
+import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.onlinemall.dao.itf.UserDao;
 import org.onlinemall.dao.util.DBConnectionFactory;
 import org.onlinemall.domain.User;
 
+import javax.jws.soap.SOAPBinding;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
+import java.util.Map;
 
 public class UserDaoImpl implements UserDao {
     //    日志
@@ -26,8 +33,16 @@ public class UserDaoImpl implements UserDao {
         String userEmail = user.getUserEmail();
         String userPassword = user.getUserPassword();
         String userPortrait = user.getUserProtrait();
-//        危险的操作，待重构
+//        dbutils
+        QueryRunner qr = new QueryRunner();
         Connection conn = DBConnectionFactory.getDBConnectionFactory().getConnection();
+        try {
+            String sql = "insert into user values (?,?,?,?,?)";
+            Object[] params = {userId,userName,userEmail,userPassword,userPortrait};
+            qr.update(conn,sql,params);
+        }finally {//        创建queryrunner未使用datasource，手动关闭连接
+            conn.close();
+        }
     }
 
     @Override
@@ -43,7 +58,7 @@ public class UserDaoImpl implements UserDao {
 //    使用id查询
     @Override
     public User queryById(int userId) throws Exception {
-//        危险的操作
+//
         Connection conn = DBConnectionFactory.getDBConnectionFactory().getConnection();
 
         return null;
@@ -51,82 +66,38 @@ public class UserDaoImpl implements UserDao {
 //    使用名称查询
     public User queryByName(String userName) throws Exception{
         User user = null;
-        Connection conn = null;
-        PreparedStatement preSta = null;
-        ResultSet res = null;
-//        危险的操作
+//        dbutils
+        QueryRunner qr = new QueryRunner();
+        Connection conn = DBConnectionFactory.getDBConnectionFactory().getConnection();
         try {
-            conn = DBConnectionFactory.getDBConnectionFactory().getConnection();
-            String sql = "select * from user where user_name like "+"\""+userName+"\"";
-            logger.info("sql:"+sql);
-            preSta = conn.prepareStatement(sql);
-            res = preSta.executeQuery();
-
-            while (res.next()){
+            String sql = "select * from user where user_name like ?";
+            Map<String,Object> userMap = qr.query(conn,sql,new MapHandler(),userName);
+            if (userMap!=null){
                 user = new User();
-                user.setUserId(res.getString("user_id"));
-                user.setUserName(res.getString("user_name"));
-                user.setUserEmail(res.getString("user_email"));
-                user.setUserPassword(res.getString("user_password"));
-                user.setUserPortrait(res.getString("user_portrait"));
+                user.mapToBean(userMap);
             }
-        }catch (Exception e){
-            throw new RuntimeException(e);
+            return user;
         }finally {
-            try{
-                res.close();
-            }finally {
-                try {
-                    preSta.close();
-                }finally {
-                    try {
-                        conn.close();
-                    }finally {
-                        return user;
-                    }
-                }
-            }
+            conn.close();
         }
     }
 
 //    使用邮箱查询
     public User queryByEmail(String userEmail) throws Exception{
         User user = null;
-        Connection conn = null;
-        PreparedStatement preSta = null;
-        ResultSet res = null;
-
+//        dbutils
+        QueryRunner qr = new QueryRunner();
+        Connection conn = DBConnectionFactory.getDBConnectionFactory().getConnection();
         try {
-            conn = DBConnectionFactory.getDBConnectionFactory().getConnection();
-            String sql = "select * from user where user_email like "+"\""+userEmail+"\"";
-            logger.info("sql:"+sql);
-            preSta = conn.prepareStatement(sql);
-            res = preSta.executeQuery();
-
-            while (res.next()){
+            String sql = "select * from user where user_email like ?";
+            Map<String,Object> userMap = qr.query(conn,sql,new MapHandler(),userEmail);
+            if (userMap!=null){
                 user = new User();
-                user.setUserId(res.getString("user_id"));
-                user.setUserName(res.getString("user_name"));
-                user.setUserEmail(res.getString("user_email"));
-                user.setUserPassword(res.getString("user_password"));
-                user.setUserPortrait(res.getString("user_portrait"));
+                user.mapToBean(userMap);
             }
-        }catch (Exception e){
-            throw new RuntimeException(e);
+            return user;
         }finally {
-            try{
-                res.close();
-            }finally {
-                try {
-                    preSta.close();
-                }finally {
-                    try {
-                        conn.close();
-                    }finally {
-                        return user;
-                    }
-                }
-            }
+            conn.close();
         }
     }
 

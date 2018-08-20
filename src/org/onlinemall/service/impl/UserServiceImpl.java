@@ -12,14 +12,12 @@ public class UserServiceImpl implements UserService {
         User newUser = null;
 
 //        check the username and the useremail
-        String userName = user.getUserName();
-        String userEmail = user.getUserEmail();
 
         UserDao userDao = DaoFactory.getDaoFactory().getUserDao();
         int flag = 0;
-        if (userDao.queryByName(userName) != null){
+        if (userDao.queryByName(user.getUserName()) != null){
             flag = 1;
-        }else if (userDao.queryByEmail(userEmail) != null){
+        }else if (userDao.queryByEmail(user.getUserEmail()) != null){
             flag = 2;
         }
 
@@ -30,9 +28,10 @@ public class UserServiceImpl implements UserService {
         }else {
             newUser = new User();
             newUser.setUserId(GenerateUnique.generateUserId());
-            newUser.setUserName(userName);
-            newUser.setUserEmail(userEmail);
+            newUser.setUserName(user.getUserName());
+            newUser.setUserEmail(user.getUserEmail());
             newUser.setUserPassword(user.getUserPassword());
+            newUser.setUserPortrait("");
             userDao.insert(newUser);
             return "sign up succeed";
         }

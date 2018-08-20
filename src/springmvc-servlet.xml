@@ -24,4 +24,12 @@
         <!--&lt;!&ndash; 后缀 &ndash;&gt;-->
         <!--<property name="suffix" value=".jsp" />-->
     <!--</bean>-->
+
+    <!--<mvc:interceptors>-->
+        <!--<mvc:interceptor>-->
+            <!--&lt;!&ndash; 拦截所有URL中包含/html/的请求 &ndash;&gt;-->
+            <!--<mvc:mapping path="/html/**"/>-->
+            <!--<bean class="org.onlinemall.web.HandlerInterceptorHtml"></bean>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
 </beans>

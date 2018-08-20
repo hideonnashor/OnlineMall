@@ -1,10 +1,14 @@
 package org.onlinemall.domain;
 
-public class User {
+import java.util.Map;
+
+public class User implements Bean<User>{
 
     private String userId;
     private String userName;
     private String userPassword;
+    private String userEmail;
+    private String userProtrait;
 
     public String getUserId() {
         return userId;
@@ -46,7 +50,13 @@ public class User {
         this.userEmail = userEmail;
     }
 
-    private String userProtrait;
-    private String userEmail;
-
+    @Override
+    public <User> User mapToBean(Map<String, Object> map) {
+        this.setUserId((String) map.get("user_id"));
+        this.setUserName((String) map.get("user_name"));
+        this.setUserPassword((String) map.get("user_password"));
+        this.setUserEmail((String) map.get("user_email"));
+        this.setUserPortrait((String) map.get("user_portrait"));
+        return (User) this;
+    }
 }

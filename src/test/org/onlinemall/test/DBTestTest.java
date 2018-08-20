@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.Before; 
 import org.junit.After;
 import org.onlinemall.dao.DaoFactory;
+import org.onlinemall.dao.impl.UserDaoImpl;
 import org.onlinemall.dao.itf.UserDao;
 import org.onlinemall.dao.util.DBConnectionFactory;
 import org.onlinemall.dao.util.MySqlGetConnection;
@@ -48,8 +49,9 @@ public void dbConnect() throws SQLException {
 
     try {
         UserDao userDao = DaoFactory.getDaoFactory().getUserDao();
-//        System.out.println(userDao.queryById(1).getUserEmail());
-        logger.info(userDao.queryByEmail("pregfind@126.com").getUserName());
+        System.out.println(userDao.queryByName("p90").getUserEmail());
+//        logger.info(userDao.queryByEmail("pregfind@126.com").getUserName());
+        System.out.println(userDao.queryByEmail("pregfind@126.com").getUserPassword());
     } catch (Exception e) {
         e.printStackTrace();
     }
@@ -73,5 +75,16 @@ public void dbConnect() throws SQLException {
     public void generateUniqueId(){
     GenerateUnique generateUnique = new GenerateUnique();
     System.out.println(generateUnique.generateUserId());
+}
+@Test
+    public void insertUser() throws Exception {
+//        User user = new User();
+//        user.setUserName("1");
+//        user.setUserEmail("1");
+//        user.setUserPassword("1");
+//        user.setUserId("2");
+//        user.setUserPortrait("1");
+//        UserDao userDao = DaoFactory.getDaoFactory().getUserDao();
+//        userDao.insert(user);
 }
 }

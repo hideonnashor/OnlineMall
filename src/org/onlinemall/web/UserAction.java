@@ -11,15 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/")
 public class UserAction {
 
-        private static Logger logger = Logger.getLogger("UserAction");
-    static {
-        logger.setLevel(Level.INFO);
-    }
-
-    @RequestMapping(value = "/signup")
+    @RequestMapping(value = "/user/signup")
     public ModelAndView signUp(@RequestParam("username")String username, @RequestParam("useremail")String useremail, @RequestParam("userpassword")String userpassword) throws Exception {
         User user = new User();
         user.setUserName(username);
@@ -28,11 +23,15 @@ public class UserAction {
 
         UserService userService = ServiceFactory.getServiceFactory().getUserService();
         String result = userService.signUp(user);
-        logger.info("feedback:"+result);
 
         ModelAndView modelAndView = new ModelAndView("forward:/html/message.jsp");
         modelAndView.addObject("signupMessage",result);
 
         return modelAndView;
     }
+    @RequestMapping(value = "/sign")
+    public ModelAndView userSignUp() throws Exception {
+        return new ModelAndView("/user_sign.html");
+    }
+
 }
