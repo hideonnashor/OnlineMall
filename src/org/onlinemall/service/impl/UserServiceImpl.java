@@ -36,4 +36,26 @@ public class UserServiceImpl implements UserService {
             return "sign up succeed";
         }
     }
+
+    @Override
+    public User signIn(User user, String type) throws Exception {
+        UserDao userDao = DaoFactory.getDaoFactory().getUserDao();
+
+//         使用name登陆
+        if (type.equalsIgnoreCase("name")){
+            User userSearchByName = userDao.queryByName(user.getUserName());
+            if (userSearchByName!=null){
+                user = user.getUserPassword().equals(userSearchByName.getUserPassword())? userSearchByName:null;
+                return user;
+            }
+            return null;
+        }
+//        使用email登陆
+        User userSearchByEmail = userDao.queryByEmail(user.getUserEmail());
+        if (userSearchByEmail!=null){
+            user = user.getUserPassword().equals(userSearchByEmail.getUserPassword())?userSearchByEmail:null;
+            return user;
+        }
+        return null;
+    }
 }

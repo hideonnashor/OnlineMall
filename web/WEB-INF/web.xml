@@ -8,6 +8,15 @@
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
 
+    <listener>
+        <description>ApplicationListener</description>
+        <listener-class>org.onlinemall.listener.ApplicationListener</listener-class>
+    </listener>
+    <listener>
+        <description>SessionListener</description>
+        <listener-class>org.onlinemall.listener.SessionListener</listener-class>
+    </listener>
+
     <!--configure the setting of springmvcDispatcherServlet and configure the mapping-->
     <servlet>
         <servlet-name>springmvc</servlet-name>

@@ -6,19 +6,14 @@ import org.junit.Test;
 import org.junit.Before; 
 import org.junit.After;
 import org.onlinemall.dao.DaoFactory;
-import org.onlinemall.dao.impl.UserDaoImpl;
 import org.onlinemall.dao.itf.UserDao;
-import org.onlinemall.dao.util.DBConnectionFactory;
-import org.onlinemall.dao.util.MySqlGetConnection;
 import org.onlinemall.domain.User;
 import org.onlinemall.service.ServiceFactory;
 import org.onlinemall.service.itf.UserService;
 import org.onlinemall.service.utils.GenerateUnique;
+import org.onlinemall.web.util.WebUtils;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /** 
 * DBTest Tester. 
@@ -43,18 +38,7 @@ public void after() throws Exception {
 
 @Test
 public void dbConnect() throws SQLException {
-    //    ��־
-    Logger logger = Logger.getLogger("DBTestTest");
-    logger.setLevel(Level.INFO);
-
-    try {
-        UserDao userDao = DaoFactory.getDaoFactory().getUserDao();
-        System.out.println(userDao.queryByName("p90").getUserEmail());
-//        logger.info(userDao.queryByEmail("pregfind@126.com").getUserName());
-        System.out.println(userDao.queryByEmail("pregfind@126.com").getUserPassword());
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
+    System.out.println(WebUtils.nameOrEmail("sdfsfdf!@"));
 }
 @Test
     public void userSignUp() throws Exception {
@@ -86,5 +70,32 @@ public void dbConnect() throws SQLException {
 //        user.setUserPortrait("1");
 //        UserDao userDao = DaoFactory.getDaoFactory().getUserDao();
 //        userDao.insert(user);
+}
+@Test
+    public void encrypt() throws Exception{
+    String s = "hah士大夫啊空军飞机阿佛加送i放假哦i骄傲的身份大师傅";
+    System.out.println(s.getBytes());
+    System.out.println(WebUtils.ecpMD5(s));
+    System.out.println(WebUtils.ecpMD5(s));
+    System.out.println(WebUtils.ecpMD5(s));
+}
+@Test
+    public void userSignIn() throws Exception{
+        User user = new User();
+        user.setUserName("p90");
+        user.setUserEmail("pregfind@126.com");
+        user.setUserPassword("123456");
+
+        UserService userService = ServiceFactory.getServiceFactory().getUserService();
+        User user1 = userService.signIn(user,"name");
+        User user2 = userService.signIn(user,"email");
+
+    System.out.println(user1.getUserName());
+    System.out.println(user1.getUserEmail());
+    System.out.println(user1.getUserPassword());
+
+    System.out.println(user2.getUserName());
+    System.out.println(user2.getUserEmail());
+    System.out.println(user2.getUserPassword());
 }
 }
