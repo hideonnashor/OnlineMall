@@ -41,7 +41,7 @@
 
     </ol>
     <div>
-        ${signupMessage}
+        ${message}
     </div>
 </div>
 </body>

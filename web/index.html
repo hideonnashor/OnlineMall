@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
+<meta http-equiv="content-type" content="txt/html;charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, 
                                  initial-scale=1.0, 
@@ -30,20 +30,29 @@
 </style>
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$.ajax({		
+			url:"./loginstate",
+			context:document.body,
+			success:function(result){
+				mbody = $.parseJSON(result).Mbody;
+				$("#username").text(mbody[0].userName);
+			}
+		});
+	});
+
+</script>
 
 </head>
 <body>
 	<img src="" alt="">
 	<div class="container" role="main">
 		<ol class="breadcrumb">
-			<li class="active"><a href="#">Home</a></li>
-			<!-- 用户已登陆 -->
-			<li><a href="#">Member center</a></li>
-			<li><a href="#">Sign out</a></li>
-			<!-- 用户未登陆 -->
-			<!-- <li><a href="#">Sign in</a></li>
-			<li><a href="#">Sign up</a></li> -->
-
+			<li class="active"><a href="./">Home</a></li>
+			<li><a href="./user/info">Member center</a></li>
+			<li><a href="./user/signout">Sign out</a></li>
+			<li>你好,<strong id="username"></strong></li>
 		</ol>
 	</div>
 

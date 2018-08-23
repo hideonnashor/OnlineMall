@@ -74,9 +74,6 @@ public void dbConnect() throws SQLException {
 @Test
     public void encrypt() throws Exception{
     String s = "hah士大夫啊空军飞机阿佛加送i放假哦i骄傲的身份大师傅";
-    System.out.println(s.getBytes());
-    System.out.println(WebUtils.ecpMD5(s));
-    System.out.println(WebUtils.ecpMD5(s));
     System.out.println(WebUtils.ecpMD5(s));
 }
 @Test

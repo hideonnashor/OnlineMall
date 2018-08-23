@@ -25,11 +25,17 @@
         <!--<property name="suffix" value=".jsp" />-->
     <!--</bean>-->
 
-    <!--<mvc:interceptors>-->
-        <!--<mvc:interceptor>-->
-            <!--&lt;!&ndash; 拦截所有URL中包含/html/的请求 &ndash;&gt;-->
-            <!--<mvc:mapping path="/html/**"/>-->
-            <!--<bean class="org.onlinemall.web.HandlerInterceptorHtml"></bean>-->
-        <!--</mvc:interceptor>-->
-    <!--</mvc:interceptors>-->
+
+    <mvc:interceptors>
+        <!--拦截未登录用户对所有文件的访问-->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="org.onlinemall.web.inteceptor.AllInteceptor"/>
+        </mvc:interceptor>
+        <!--拦截未登录用户对html目录的访问-->
+        <mvc:interceptor>
+            <mvc:mapping path="/html/**"/>
+            <bean class="org.onlinemall.web.inteceptor.UserInfoInteceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

@@ -4,18 +4,17 @@ import org.onlinemall.domain.User;
 import org.onlinemall.service.ServiceFactory;
 import org.onlinemall.service.itf.UserService;
 import org.onlinemall.web.util.WebUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Hashtable;
+import javax.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/")
-public class UserAction {
+public class SignAction {
     @RequestMapping(value = "/sign")
     public ModelAndView userSignUp() throws Exception {
         return new ModelAndView("/user_sign.html");
@@ -31,8 +30,8 @@ public class UserAction {
         UserService userService = ServiceFactory.getServiceFactory().getUserService();
         String result = userService.signUp(user);
 
-        ModelAndView modelAndView = new ModelAndView("forward:/html/message.jsp");
-        modelAndView.addObject("signupMessage",result);
+        ModelAndView modelAndView = new ModelAndView("forward:/message.jsp");
+        modelAndView.addObject("message",result);
 
         return modelAndView;
     }
@@ -48,8 +47,8 @@ public class UserAction {
 //        判断是否已经登陆
         int alreadyLogged = WebUtils.isLogged(request.getServletContext(),userSign);
         if (alreadyLogged == 1){
-            modelAndView.addObject("signupMessage","用户已登陆");
-            modelAndView.setViewName("forward:/html/message.jsp");
+            modelAndView.addObject("message","用户已登陆");
+            modelAndView.setViewName("forward:/message.jsp");
             return modelAndView;
         }
 //        根据登录方式type封装user
@@ -64,17 +63,33 @@ public class UserAction {
         User userToLogin = userService.signIn(user,type);
 //        密码错误
         if (userToLogin == null){
-            modelAndView.addObject("signupMessage","登陆账户或密码错误");
-            modelAndView.setViewName("forward:/html/message.jsp");
+            modelAndView.addObject("message","登陆账户或密码错误");
+            modelAndView.setViewName("forward:/message.jsp");
             return modelAndView;
         }
 //        session和application都存入用户登陆状态
-        request.getSession().setAttribute("login_status","logged");
+        request.getSession().setAttribute("loginState","logged");
         request.getSession().setAttribute("userName",userToLogin.getUserName());
         request.getSession().setAttribute("userEmail",userToLogin.getUserEmail());
         WebUtils.applicationLoggerMapAdd(request.getServletContext(),userToLogin.getUserName(),userToLogin.getUserEmail());
         modelAndView.setViewName("redirect:/");
         return  modelAndView;
     }
+    @RequestMapping(value = "/user/signout")
+    public ModelAndView signOut(HttpServletRequest request){
+        try {
+            HttpSession session = request.getSession();
+            String userName = (String) session.getAttribute("userName");
+            String userEmail = (String) session.getAttribute("userEmail");
 
+            session.setAttribute("loginState","");
+            session.setAttribute("userName","");
+            session.setAttribute("userEmail","");
+            WebUtils.applicationLoggerMapDelete(request.getServletContext(),userName,userEmail);
+
+            return new ModelAndView("redirect:/");
+        } catch (NullPointerException e) {
+            return new ModelAndView("redirect:/");
+        }
+    }
 }
