@@ -9,6 +9,7 @@
 
     <!-- scan the package and the sub package -->
     <context:component-scan base-package="org.onlinemall.web"/>
+    <context:component-scan base-package="org.onlinemall.api"/>
 
     <!-- don't handle the static resource -->
     <mvc:default-servlet-handler />

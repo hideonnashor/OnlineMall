@@ -30,20 +30,7 @@
 </style>
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$.ajax({		
-			url:"./loginstate",
-			context:document.body,
-			success:function(result){
-				mbody = $.parseJSON(result).Mbody;
-				$("#username").text(mbody[0].userName);
-			}
-		});
-	});
-
-</script>
-
+<script type="text/javascript" src="./js/ajax_userinfo.js"></script>
 </head>
 <body>
 	<img src="" alt="">
@@ -300,4 +287,12 @@
     	</div>
     </div>
 </body>
+<script type="text/javascript">	
+	try {
+		$("#username").text(getLoginState());
+	} catch(e) {
+		// statements
+		console.log(e);
+	}
+</script>
 </html>

@@ -26,23 +26,22 @@
     </style>
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+    <script type="text/javascript" src="./js/ajax_userinfo.js"></script>
 </head>
 <body>
+<img src="" alt="">
 <div class="container" role="main">
-    <ol class="breadcrumb">
-        <li class="active"><a href="#">Home</a></li>
-        <!-- 用户已登陆 -->
-        <li><a href="#">Member center</a></li>
-        <li><a href="#">Sign out</a></li>
-        <!-- 用户未登陆 -->
-        <!-- <li><a href="#">Sign in</a></li>
-        <li><a href="#">Sign up</a></li> -->
-
-    </ol>
     <div>
         ${message}
     </div>
 </div>
 </body>
+<script type="text/javascript">
+    try {
+        $("#username").text(getLoginState());
+    } catch(e) {
+        // statements
+        console.log(e);
+    }
+</script>
 </html>

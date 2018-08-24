@@ -40,8 +40,15 @@ public class SignAction {
     public ModelAndView signIn(@RequestParam("usersign")String userSign, @RequestParam("userpassword")String userPassword, HttpServletRequest request) throws Exception {
         ModelAndView modelAndView = new ModelAndView();
         User user = new User();
-        userPassword = WebUtils.ecpMD5(userPassword);
-
+//        判断是否为空
+        try {
+            userSign = userSign;
+            userPassword = WebUtils.ecpMD5(userPassword);
+        }catch (NullPointerException e){
+            modelAndView.addObject("message","表单项不能为空");
+            modelAndView.setViewName("forward:/message.jsp");
+            return modelAndView;
+        }
 //        判断登陆方式
         String type = WebUtils.nameOrEmail(userSign);
 //        判断是否已经登陆
@@ -58,7 +65,7 @@ public class SignAction {
             user.setUserEmail(userSign);
         }
         user.setUserPassword(userPassword);
-
+//       service层校检
         UserService userService = ServiceFactory.getServiceFactory().getUserService();
         User userToLogin = userService.signIn(user,type);
 //        密码错误
