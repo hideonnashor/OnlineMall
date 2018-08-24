@@ -43,7 +43,6 @@ public class LoggedState {
         jsonObject.put("Mbody",jsonArray);
         try {
             response.getWriter().write(jsonObject.toString());
-            System.out.println(jsonObject.toString());
         } catch (IOException e) {
             System.out.println("api LoggedState 无法返回数据给浏览器");
             throw new RuntimeException(e);

@@ -5,13 +5,16 @@ import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.Before; 
 import org.junit.After;
+import org.onlinemall.appconfig.ContextFactory;
 import org.onlinemall.dao.DaoFactory;
 import org.onlinemall.dao.itf.UserDao;
+import org.onlinemall.domain.Item;
 import org.onlinemall.domain.User;
 import org.onlinemall.service.ServiceFactory;
 import org.onlinemall.service.itf.UserService;
 import org.onlinemall.service.utils.GenerateUnique;
 import org.onlinemall.web.util.WebUtils;
+import org.springframework.context.ApplicationContext;
 
 import java.sql.SQLException;
 
@@ -94,5 +97,14 @@ public void dbConnect() throws SQLException {
     System.out.println(user2.getUserName());
     System.out.println(user2.getUserEmail());
     System.out.println(user2.getUserPassword());
+}
+@Test
+    public void BeanTest(){
+    ApplicationContext applicationContext = ContextFactory.getContextFactory().getApplicationContext();
+    Item item = applicationContext.getBean(Item.class);
+
+
+    item.setItemCate("1");
+    System.out.println(item.getItemCate());
 }
 }
