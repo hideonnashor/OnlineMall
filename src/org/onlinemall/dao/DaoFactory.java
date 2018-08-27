@@ -1,8 +1,10 @@
 package org.onlinemall.dao;
 
-import org.onlinemall.dao.impl.CustomerDaoImpl;
+import org.onlinemall.dao.impl.CategoryDapImpl;
+import org.onlinemall.dao.impl.ItemDaoImpl;
 import org.onlinemall.dao.impl.UserDaoImpl;
-import org.onlinemall.dao.itf.CustomerDao;
+import org.onlinemall.dao.itf.CategoryDao;
+import org.onlinemall.dao.itf.ItemDao;
 import org.onlinemall.dao.itf.UserDao;
 
 public class DaoFactory {
@@ -22,5 +24,11 @@ public class DaoFactory {
 
     public UserDao getUserDao(){
         return new UserDaoImpl();
+    }
+    public CategoryDao getCategoryDao() {
+        return new CategoryDapImpl();
+    }
+    public ItemDao getItemDao(){
+        return new ItemDaoImpl();
     }
 }

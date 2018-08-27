@@ -1,21 +1,22 @@
 package org.onlinemall.domain;
 
 public class Item {
-    private String itemId;
+    private int itemId;
     private String itemName;
+    private String itemMnfc;
     private String itemImage;
     private String itemIntro;
-    private String itemPrice;
-    private String itemStock;
+    private float itemPrice;
+    private int itemStock;
     private String itemCate;
 
-    public String getItemId() {
+    public int getItemId() {
         return itemId;
     }
 
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
-    }
+//    public void setItemId(int itemId) {
+//        this.itemId = itemId;
+//    }
 
     public String getItemName() {
         return itemName;
@@ -23,6 +24,14 @@ public class Item {
 
     public void setItemName(String itemName) {
         this.itemName = itemName;
+    }
+
+    public String getItemMnfc() {
+        return itemMnfc;
+    }
+
+    public void setItemMnfc(String itemMnfc) {
+        this.itemMnfc = itemMnfc;
     }
 
     public String getItemImage() {
@@ -41,19 +50,19 @@ public class Item {
         this.itemIntro = itemIntro;
     }
 
-    public String getItemPrice() {
+    public float getItemPrice() {
         return itemPrice;
     }
 
-    public void setItemPrice(String itemPrice) {
+    public void setItemPrice(float itemPrice) {
         this.itemPrice = itemPrice;
     }
 
-    public String getItemStock() {
+    public int getItemStock() {
         return itemStock;
     }
 
-    public void setItemStock(String itemStock) {
+    public void setItemStock(int itemStock) {
         this.itemStock = itemStock;
     }
 

@@ -4,7 +4,7 @@ import org.onlinemall.dao.DaoFactory;
 import org.onlinemall.dao.itf.UserDao;
 import org.onlinemall.domain.User;
 import org.onlinemall.service.itf.UserService;
-import org.onlinemall.service.utils.GenerateUnique;
+import org.onlinemall.utils.GenerateUnique;
 
 public class UserServiceImpl implements UserService {
     @Override
