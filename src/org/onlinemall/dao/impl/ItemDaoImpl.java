@@ -34,7 +34,7 @@ public class ItemDaoImpl implements ItemDao {
             String itemCate = item.getItemCate();
             int cateId = DaoFactory.getDaoFactory().getCategoryDao().queryByName(itemCate).getCateId();
             queryRunner.update(connection,sql2,itemId,cateId);
-        } catch (SQLException e) {
+        } catch (NullPointerException | SQLException e) {
             System.out.println("物品类别表更新失败，停止物品插入数据库");
             try {
                 connection.close();

@@ -50,7 +50,7 @@ public void itemInsert(){
 //    item.setItemId(123);
     item.setItemName("12");
     item.setItemMnfc("12");
-    item.setItemCate("手机");
+    item.setItemCate("手地方机");
     item.setItemImage("12");
     item.setItemStock(9200);
     item.setItemPrice(1200);
