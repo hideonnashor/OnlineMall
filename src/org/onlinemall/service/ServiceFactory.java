@@ -1,6 +1,8 @@
 package org.onlinemall.service;
 
+import org.onlinemall.service.impl.ItemServiceImpl;
 import org.onlinemall.service.impl.UserServiceImpl;
+import org.onlinemall.service.itf.ItemService;
 import org.onlinemall.service.itf.UserService;
 
 public class ServiceFactory {
@@ -22,6 +24,11 @@ public class ServiceFactory {
     public UserService getUserService(){
         UserService userService = new UserServiceImpl();
         return userService;
+    }
+
+    public ItemService getItemService(){
+        ItemService itemService = new ItemServiceImpl();
+        return  itemService;
     }
 
 }

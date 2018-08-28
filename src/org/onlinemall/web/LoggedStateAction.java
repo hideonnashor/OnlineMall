@@ -1,4 +1,4 @@
-package org.onlinemall.api;
+package org.onlinemall.web;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-public class LoggedState {
+public class LoggedStateAction {
     @RequestMapping(value = "/loginstate")
     public void isLogged(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
         HttpSession session = request.getSession();

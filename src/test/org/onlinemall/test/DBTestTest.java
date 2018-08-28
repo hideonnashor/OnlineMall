@@ -13,6 +13,7 @@ import org.onlinemall.domain.Category;
 import org.onlinemall.domain.Item;
 import org.onlinemall.domain.User;
 import org.onlinemall.service.ServiceFactory;
+import org.onlinemall.service.itf.ItemService;
 import org.onlinemall.service.itf.UserService;
 import org.onlinemall.utils.GenerateUnique;
 import org.onlinemall.web.util.WebUtils;
@@ -21,6 +22,7 @@ import org.springframework.context.ApplicationContext;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.List;
 
 /** 
 * DBTest Tester. 
@@ -44,18 +46,39 @@ public void after() throws Exception {
 }
 
 @Test
+public void randomTest(){
+    System.out.println((int)(Math.random()*11));
+}
+@Test
 public void itemInsert(){
     ItemDao itemDao = DaoFactory.getDaoFactory().getItemDao();
     Item item = new Item();
 //    item.setItemId(123);
-    item.setItemName("12");
-    item.setItemMnfc("12");
-    item.setItemCate("手地方机");
-    item.setItemImage("12");
-    item.setItemStock(9200);
-    item.setItemPrice(1200);
-    item.setItemIntro("12");
-    itemDao.insert(item);
+    String[] mnfc = {"华为","中兴","NVIDIA","AMD","INTEL","RStar","小米","华硕","华擎","微星","索泰","耕升"};
+    String[] cate = {"电脑、办公","礼品箱包","运动健康","家用电器","手机","服饰内衣","厨具","个护化妆","整车"};
+    for (int i =2100;i<5100;i++){
+        item.setItemName(String.valueOf(i));
+        item.setItemMnfc(mnfc[(int)(Math.random()*11)]);
+        item.setItemCate(cate[(int)(Math.random()*9)]);
+        item.setItemImage("https://img11.360buyimg.com/n7/jfs/t21502/75/405177048/223266/7f72f23e/5b0bf9cdN56f4f702.jpg");
+        item.setItemStock((int)(Math.random()*1000));
+        item.setItemPrice((int)(Math.random()*99999));
+        item.setItemIntro("暂无");
+        itemDao.insert(item);
+    }
+}
+@Test
+public void searchItemByCateService(){
+    ItemService itemService = ServiceFactory.getServiceFactory().getItemService();
+    System.out.println(itemService.getItemByCate("手机",3).get(0).toString());
+}
+@Test
+public void searchItemByCateDao(){
+    ItemDao itemDao = DaoFactory.getDaoFactory().getItemDao();
+    List<Item> list = itemDao.queryByCate("手机",3);
+    for (Item item : list){
+        System.out.println(item.toString());
+    }
 }
 
 @Test

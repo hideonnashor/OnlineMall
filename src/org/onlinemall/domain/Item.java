@@ -1,6 +1,8 @@
 package org.onlinemall.domain;
 
-public class Item {
+import java.util.Map;
+
+public class Item implements Bean<Item>{
     private int itemId;
     private String itemName;
     private String itemMnfc;
@@ -14,9 +16,9 @@ public class Item {
         return itemId;
     }
 
-//    public void setItemId(int itemId) {
-//        this.itemId = itemId;
-//    }
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
+    }
 
     public String getItemName() {
         return itemName;
@@ -72,5 +74,24 @@ public class Item {
 
     public void setItemCate(String itemCate) {
         this.itemCate = itemCate;
+    }
+
+    @Override
+    public <Item> Item mapToBean(Map<String, Object> map) {
+        this.setItemId((Integer) map.get("item_id"));
+        this.setItemName((String) map.get("item_name"));
+        this.setItemMnfc((String) map.get("item_mnfc"));
+        this.setItemImage((String) map.get("item_image"));
+        this.setItemIntro((String) map.get("item_intro"));
+        this.setItemPrice((Float) map.get("item_price"));
+        this.setItemStock((Integer) map.get("item_stock"));
+        this.setItemCate((String) map.get("item_cate"));
+
+        return (Item) this;
+    }
+    @Override
+    public String toString(){
+        return "id:"+this.getItemId()+"名称:"+this.getItemName()+"生产厂商:"+this.getItemMnfc()+"图片:"+this.getItemImage()+
+                "介绍:"+this.getItemIntro()+"价格:"+this.getItemPrice()+"库存:"+this.getItemStock()+"种类:"+this.getItemCate();
     }
 }
