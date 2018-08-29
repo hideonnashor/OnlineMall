@@ -31,6 +31,7 @@
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./js/ajax_userinfo.js"></script>
+<script type="text/javascript" src="./js/ajax_indexitems.js"></script>
 </head>
 <body>
 	<img src="" alt="">
@@ -44,242 +45,54 @@
 	</div>
 
 	<div class="page-header" style="margin: 10px;">
-		<h1>Product Category</h1>
 	</div>
 
     <div class="row">
-    	<div class="grid-options col-sm-3">
+    	<div class="col-sm-3">
     		<h4>Select your favourites</h4>
     		<a href="#" class="choose-clearance">
     			<h5>查看所有商品</h5>
             </a>
-    		<h3>Categories</h3>
-    		<ul class="options-list options-categories">
-    			<li><a href="#">图书、音像、电子书刊</a></li>
-    			<li><a href="#">手机</a></li>
-    			<li><a href="#">家用电器</a></li>
-    			<li><a href="#">数码</a></li>
-    			<li><a href="#">家居家装</a></li>
-    			<li><a href="#">电脑、办公</a></li>
-    			<li><a href="#">厨具</a></li>
-    			<li><a href="#">个护化妆</a></li>
-    			<li><a href="#">服饰内衣</a></li>
-    			<li><a href="#">钟表</a></li>
-    			<li><a href="#">鞋靴</a></li>
-    			<li><a href="#">母婴</a></li>
-    			<li><a href="#">礼品箱包</a></li>
-    			<li><a href="#">食品饮料、保健用品</a></li>
-    			<li><a href="#">珠宝</a></li>
-    			<li><a href="#">汽车用品</a></li>
-    			<li><a href="#">运动健康</a></li>
-    			<li><a href="#">玩具乐器</a></li>
-    			<li><a href="#">彩票、旅行、充值、票务</a></li>
-    			<li><a href="#">生鲜</a></li>
-    			<li><a href="#">整车</a></li>
+    		<h3>商品类别</h3>
+
+    		<ul class="nav nav-pills nav-stacked">
+    			<li class="itemtype"><a href="#">图书、音像、电子书刊</a></li>
+    			<li class="itemtype"><a href="#">手机</a></li>
+    			<li class="itemtype"><a href="#">家用电器</a></li>
+    			<li class="itemtype"><a href="#">数码</a></li>
+    			<li class="itemtype"><a href="#">家居家装</a></li>
+    			<li class="itemtype"><a href="#">电脑、办公</a></li>
+    			<li class="itemtype"><a href="#">厨具</a></li>
+    			<li class="itemtype"><a href="#">个护化妆</a></li>
+    			<li class="itemtype"><a href="#">服饰内衣</a></li>
+    			<li class="itemtype"><a href="#">钟表</a></li>
+    			<li class="itemtype"><a href="#">鞋靴</a></li>
+    			<li class="itemtype"><a href="#">母婴</a></li>
+    			<li class="itemtype"><a href="#">礼品箱包</a></li>
+    			<li class="itemtype"><a href="#">食品饮料、保健用品</a></li>
+    			<li class="itemtype"><a href="#">珠宝</a></li>
+    			<li class="itemtype"><a href="#">汽车用品</a></li>
+    			<li class="itemtype"><a href="#">运动健康</a></li>
+    			<li class="itemtype"><a href="#">玩具乐器</a></li>
+    			<li class="itemtype"><a href="#">彩票、旅行、充值、票务</a></li>
+    			<li class="itemtype"><a href="#">生鲜</a></li>
+    			<li class="itemtype"><a href="#">整车</a></li>
     		</ul>
+
     	</div>
     	<div class="product-grid col-sm-8">
 			<center>
-    			<div class="row">
-	    			<div class="product-item col-sm-3">
-	    				<a href="#">
-	    					<img src="https://img11.360buyimg.com/n7/jfs/t21502/75/405177048/223266/7f72f23e/5b0bf9cdN56f4f702.jpg" alt="product1">
-	    				</a>
-	    				<h2>
-	    					<a href="#">Product1</a>
-	    				</h2>
-	    				<p>description of product</p>
-	    				<a href="#" class="btn btn-default btn-xs pull-right">
-	    					<i>details</i>
-	    				</a>
-	    				<a href="#" class="btn btn-default btn-xs pull-right">
-	    					<i>加入购物车</i>
-	    				</a>
-	    			</div>
-	    			<div class="product-item col-sm-3">
-	    				<a href="#">
-	    					<img src="https://img13.360buyimg.com/n7/jfs/t20974/205/537922128/299675/32a7dafd/5b11632fNbcf2b880.jpg" alt="product1">
-	    				</a>
-	    				<h2>
-	    					<a href="#">Product1</a>
-	    				</h2>
-	    				<p>description of product</p>
-	    				<a href="#" class="btn btn-default btn-xs pull-right">
-	    					<i>details</i>
-	    				</a>
-	    				<a href="#" class="btn btn-default btn-xs pull-right">
-	    					<i>加入购物车</i>
-	    				</a>
-	    			</div>
-	    			<div class="product-item col-sm-3">
-	    				<a href="#">
-	    					<img src="https://img12.360buyimg.com/n7/jfs/t19939/363/1092675673/296620/5b03072e/5b149d62N8784ec1e.jpg" alt="product1">
-	    				</a>
-	    				<h2>
-	    					<a href="#">Product1</a>
-	    				</h2>
-	    				<p>description of product</p>
-	    				<a href="#" class="btn btn-default btn-xs pull-right">
-	    					<i>details</i>
-	    				</a>
-	    				<a href="#" class="btn btn-default btn-xs pull-right">
-	    					<i>加入购物车</i>
-	    				</a>
-	    			</div>
-	    			<div class="product-item col-sm-3">
-	    				<a href="#">
-	    					<img src="https://img11.360buyimg.com/n7/jfs/t14947/152/2547272843/249018/b643c07c/5aa8c8a8N7cc84d18.jpg" alt="product1">
-	    				</a>
-	    				<h2>
-	    					<a href="#">Product1</a>
-	    				</h2>
-	    				<p>description of product</p>
-	    				<a href="#" class="btn btn-default btn-xs pull-right">
-	    					<i>details</i>
-	    				</a>
-	    				<a href="#" class="btn btn-default btn-xs pull-right">
-	    					<i>加入购物车</i>
-	    				</a>
-	    			</div>
-	    			<div class="product-item col-sm-3">
-	    				<a href="#">
-	    					<img src="https://img12.360buyimg.com/n7/jfs/t21313/152/576243349/299675/32a7dafd/5b11634fN6153fccf.jpg" alt="product1">
-	    				</a>
-	    				<h2>
-	    					<a href="#">Product1</a>
-	    				</h2>
-	    				<p>description of product</p>
-	    				<a href="#" class="btn btn-default btn-xs pull-right">
-	    					<i>details</i>
-	    				</a>
-	    				<a href="#" class="btn btn-default btn-xs pull-right">
-	    					<i>加入购物车</i>
-	    				</a>
-	    			</div>
-	    			<div class="product-item col-sm-3">
-	    				<a href="#">
-	    					<img src="https://img13.360buyimg.com/n7/jfs/t24586/261/677406755/248143/9643c7f3/5b3c3822Nea8f73e4.jpg" alt="product1">
-	    				</a>
-	    				<h2>
-	    					<a href="#">Product1</a>
-	    				</h2>
-	    				<p>description of product</p>
-	    				<a href="#" class="btn btn-default btn-xs pull-right">
-	    					<i>details</i>
-	    				</a>
-	    				<a href="#" class="btn btn-default btn-xs pull-right">
-	    					<i>加入购物车</i>
-	    				</a>
-	    			</div>
-	    			<div class="product-item col-sm-3">
-	    				<a href="#">
-	    					<img src="https://img14.360buyimg.com/n7/jfs/t17278/112/289194901/93902/e5883831/5a6947f0Nd79371e9.jpg" alt="product1">
-	    				</a>
-	    				<h2>
-	    					<a href="#">Product1</a>
-	    				</h2>
-	    				<p>description of product</p>
-	    				<a href="#" class="btn btn-default btn-xs pull-right">
-	    					<i>details</i>
-	    				</a>
-	    				<a href="#" class="btn btn-default btn-xs pull-right">
-	    					<i>加入购物车</i>
-	    				</a>
-	    			</div>
-	    			<div class="product-item col-sm-3">
-	    				<a href="#">
-	    					<img src="https://img11.360buyimg.com/n7/jfs/t14848/365/2076510540/93902/e5883831/5a6947e5N39e16ed8.jpg" alt="product1">
-	    				</a>
-	    				<h2>
-	    					<a href="#">Product1</a>
-	    				</h2>
-	    				<p>description of product</p>
-	    				<a href="#" class="btn btn-default btn-xs pull-right">
-	    					<i>details</i>
-	    				</a>
-	    				<a href="#" class="btn btn-default btn-xs pull-right">
-	    					<i>加入购物车</i>
-	    				</a>
-	    			</div>
-	    			<div class="product-item col-sm-3">
-	    				<a href="#">
-	    					<img src="https://img14.360buyimg.com/n7/jfs/t11542/236/465469886/260610/bc7201c5/59f15b73N0b92bec5.jpg" alt="product1">
-	    				</a>
-	    				<h2>
-	    					<a href="#">Product1</a>
-	    				</h2>
-	    				<p>description of product</p>
-	    				<a href="#" class="btn btn-default btn-xs pull-right">
-	    					<i>details</i>
-	    				</a>
-	    				<a href="#" class="btn btn-default btn-xs pull-right">
-	    					<i>加入购物车</i>
-	    				</a>
-	    			</div>
-	    			<div class="product-item col-sm-3">
-	    				<a href="#">
-	    					<img src="https://img14.360buyimg.com/n7/jfs/t11542/236/465469886/260610/bc7201c5/59f15b73N0b92bec5.jpg" alt="product1">
-	    				</a>
-	    				<h2>
-	    					<a href="#">Product1</a>
-	    				</h2>
-	    				<p>description of product</p>
-	    				<a href="#" class="btn btn-default btn-xs pull-right">
-	    					<i>details</i>
-	    				</a>
-	    				<a href="#" class="btn btn-default btn-xs pull-right">
-	    					<i>加入购物车</i>
-	    				</a>
-	    			</div>
-	    			<div class="product-item col-sm-3">
-	    				<a href="#">
-	    					<img src="https://img14.360buyimg.com/n7/jfs/t11542/236/465469886/260610/bc7201c5/59f15b73N0b92bec5.jpg" alt="product1">
-	    				</a>
-	    				<h2>
-	    					<a href="#">Product1</a>
-	    				</h2>
-	    				<p>description of product</p>
-	    				<a href="#" class="btn btn-default btn-xs pull-right">
-	    					<i>details</i>
-	    				</a>
-	    				<a href="#" class="btn btn-default btn-xs pull-right">
-	    					<i>加入购物车</i>
-	    				</a>
-	    			</div>
-	    			<div class="product-item col-sm-3">
-	    				<a href="#">
-	    					<img src="https://img14.360buyimg.com/n7/jfs/t11542/236/465469886/260610/bc7201c5/59f15b73N0b92bec5.jpg" alt="product1">
-	    				</a>
-	    				<h2>
-	    					<a href="#">Product1</a>
-	    				</h2>
-	    				<p>description of product</p>
-	    				<a href="#" class="btn btn-default btn-xs pull-right">
-	    					<i>details</i>
-	    				</a>
-	    				<a href="#" class="btn btn-default btn-xs pull-right">
-	    					<i>加入购物车</i>
-	    				</a>
-	    			</div>
-    			</div>
+				<div class="row" id="items">
+					
+				</div>
 				<center>
 					<nav class="page-navigation" aria-label="Page navigation">
 						<ul class="pagination pagination-lg">
-							<li>
-								<a href="#" aria-label="Previous">
-									<span aria-hidden="true">&laquo;</span>
-								</a>
-							</li>
-								<li class="active"><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-							<li>
-								<a href="#" aria-label="Next">
-									<span aria-hidden="true">&raquo;</span>
-								</a>
-							</li>
+							<li><a class="pagebutton1">1</a></li>
+							<li><a class="pagebutton2">2</a></li>
+							<li><a class="pagebutton3">3</a></li>
+							<li><a class="pagebutton4">4</a></li>
+							<li><a class="pagebutton5">5</a></li>
 						</ul>
 					</nav>
 				</center>
@@ -290,6 +103,14 @@
 <script type="text/javascript">	
 	try {
 		$("#username").text(getLoginState());
+	} catch(e) {
+		// statements
+		console.log(e);
+	}
+</script>
+<script type="text/javascript">
+	try {
+		getItemByType("图书、音像、电子书刊",1);
 	} catch(e) {
 		// statements
 		console.log(e);

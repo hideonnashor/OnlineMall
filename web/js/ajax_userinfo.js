@@ -10,8 +10,6 @@ function getLoginState() {
 			// 	"state": "logged",
 			// 	"userName": "create"
 			// }]
-			console.log("返回为");
-			console.log(mbody[0].userName);
 			result = mbody[0].userName;
 		}
 	});
