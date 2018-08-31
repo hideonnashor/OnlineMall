@@ -9,6 +9,7 @@ import org.onlinemall.appconfig.ContextFactory;
 import org.onlinemall.dao.DaoFactory;
 import org.onlinemall.dao.itf.CategoryDao;
 import org.onlinemall.dao.itf.ItemDao;
+import org.onlinemall.dao.util.DBConnectionFactory;
 import org.onlinemall.domain.Category;
 import org.onlinemall.domain.Item;
 import org.onlinemall.domain.User;
@@ -17,7 +18,9 @@ import org.onlinemall.service.itf.ItemService;
 import org.onlinemall.service.itf.UserService;
 import org.onlinemall.utils.GenerateUnique;
 import org.onlinemall.web.util.WebUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import redis.clients.jedis.Jedis;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
@@ -33,9 +36,9 @@ import java.util.List;
 */
 
 public class DBTestTest {
-    static {
-
-    }
+    @Autowired
+    private Item item1;
+    private Item item2;
 
 @Before
 public void before() throws Exception { 
@@ -44,7 +47,34 @@ public void before() throws Exception {
 @After
 public void after() throws Exception { 
 }
-
+@Test
+public void redisTest(){
+//    Jedis jedis = new Jedis("localhost");
+//    System.out.println(jedis.ping());
+//    jedis.set("1","1");
+//    System.out.println(jedis.get("1"));
+    Jedis jedis = DBConnectionFactory.getDBConnectionFactory().getRedisConnection();
+    System.out.println(jedis.get("1"));
+//    jedis.set("2","2");
+}
+@Test
+public void getUserInfo(){
+    UserService userService = ServiceFactory.getServiceFactory().getUserService();
+    try {
+        User user = userService.getUserInfo("1@qq.com");
+        System.out.println(user.getUserName());
+    } catch (Exception e) {
+        System.out.println(e);
+    }
+}
+@Test
+public void iocUseTest(){
+    item1 = ContextFactory.getContextFactory().getApplicationContext().getBean(Item.class);
+    item2 = ContextFactory.getContextFactory().getApplicationContext().getBean(Item.class);
+    this.item1.setItemCate("1");
+    this.item2.setItemCate("2");
+    System.out.println(this.item1.getItemCate()+this.item2.getItemCate());
+}
 @Test
 public void randomTest(){
     System.out.println((int)(Math.random()*11));

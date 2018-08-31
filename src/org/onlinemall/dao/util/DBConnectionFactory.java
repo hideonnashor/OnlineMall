@@ -1,5 +1,7 @@
 package org.onlinemall.dao.util;
 
+import redis.clients.jedis.Jedis;
+
 import java.sql.Connection;
 
 public class DBConnectionFactory {
@@ -16,8 +18,12 @@ public class DBConnectionFactory {
         }
     }
 
-    public Connection getConnection(){
+    public Connection getMysqlConnection(){
         DBGetConnection mySqlGetConnection = new MySqlGetConnection();
         return mySqlGetConnection.getConnection();
+    }
+    public Jedis getRedisConnection(){
+        RedisGetConnection redisGetConnection = new RedisGetConnection();
+        return redisGetConnection.getConnection();
     }
 }

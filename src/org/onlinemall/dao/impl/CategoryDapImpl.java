@@ -19,7 +19,7 @@ public class CategoryDapImpl implements CategoryDao {
         ApplicationContext applicationContext = ContextFactory.getContextFactory().getApplicationContext();
         Category category = applicationContext.getBean(Category.class);
         QueryRunner queryRunner = applicationContext.getBean(QueryRunner.class);
-        Connection connection = DBConnectionFactory.getDBConnectionFactory().getConnection();
+        Connection connection = DBConnectionFactory.getDBConnectionFactory().getMysqlConnection();
 
         String sql = "select * from category where cate_name like ?";
         try {

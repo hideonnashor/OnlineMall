@@ -1,21 +1,14 @@
 package org.onlinemall.dao.impl;
 
 import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.handlers.BeanHandler;
-import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.MapHandler;
-import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.onlinemall.dao.itf.UserDao;
 import org.onlinemall.dao.util.DBConnectionFactory;
 import org.onlinemall.domain.User;
 
-import javax.jws.soap.SOAPBinding;
-import java.io.IOException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.List;
 import java.util.Map;
 
@@ -35,7 +28,7 @@ public class UserDaoImpl implements UserDao {
         String userPortrait = user.getUserProtrait();
 //        dbutils
         QueryRunner qr = new QueryRunner();
-        Connection conn = DBConnectionFactory.getDBConnectionFactory().getConnection();
+        Connection conn = DBConnectionFactory.getDBConnectionFactory().getMysqlConnection();
         try {
             String sql = "insert into user values (?,?,?,?,?)";
             Object[] params = {userId,userName,userEmail,userPassword,userPortrait};
@@ -59,7 +52,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User queryById(int userId) throws Exception {
 //
-        Connection conn = DBConnectionFactory.getDBConnectionFactory().getConnection();
+        Connection conn = DBConnectionFactory.getDBConnectionFactory().getMysqlConnection();
 
         return null;
     }
@@ -68,7 +61,7 @@ public class UserDaoImpl implements UserDao {
         User user = null;
 //        dbutils
         QueryRunner qr = new QueryRunner();
-        Connection conn = DBConnectionFactory.getDBConnectionFactory().getConnection();
+        Connection conn = DBConnectionFactory.getDBConnectionFactory().getMysqlConnection();
         try {
             String sql = "select * from user where user_name like ?";
             Map<String,Object> userMap = qr.query(conn,sql,new MapHandler(),userName);
@@ -87,7 +80,7 @@ public class UserDaoImpl implements UserDao {
         User user = null;
 //        dbutils
         QueryRunner qr = new QueryRunner();
-        Connection conn = DBConnectionFactory.getDBConnectionFactory().getConnection();
+        Connection conn = DBConnectionFactory.getDBConnectionFactory().getMysqlConnection();
         try {
             String sql = "select * from user where user_email like ?";
             Map<String,Object> userMap = qr.query(conn,sql,new MapHandler(),userEmail);

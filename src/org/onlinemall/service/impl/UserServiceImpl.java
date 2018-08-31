@@ -58,4 +58,17 @@ public class UserServiceImpl implements UserService {
         }
         return null;
     }
+
+    @Override
+    public User getUserInfo(String userIden) throws Exception {
+        User user = null;
+        UserDao userDao = DaoFactory.getDaoFactory().getUserDao();
+
+//        user = userDao.queryByName();
+        user = userDao.queryByName(userIden);
+        if (user == null){
+            user = userDao.queryByEmail(userIden);
+        }
+        return user;
+    }
 }

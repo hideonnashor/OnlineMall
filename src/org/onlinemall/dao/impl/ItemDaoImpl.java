@@ -21,7 +21,7 @@ public class ItemDaoImpl implements ItemDao {
     public void insert(Item item) {
         ApplicationContext applicationContext = ContextFactory.getContextFactory().getApplicationContext();
         QueryRunner queryRunner = applicationContext.getBean(QueryRunner.class);
-        Connection connection = DBConnectionFactory.getDBConnectionFactory().getConnection();
+        Connection connection = DBConnectionFactory.getDBConnectionFactory().getMysqlConnection();
 
 //      values
         int itemId = GenerateUnique.generateItemId();
@@ -75,7 +75,7 @@ public class ItemDaoImpl implements ItemDao {
     public List<Item> queryByCate(String itemCate, int page) {
         ApplicationContext applicationContext = ContextFactory.getContextFactory().getApplicationContext();
         QueryRunner queryRunner = applicationContext.getBean(QueryRunner.class);
-        Connection connection = DBConnectionFactory.getDBConnectionFactory().getConnection();
+        Connection connection = DBConnectionFactory.getDBConnectionFactory().getMysqlConnection();
         List itemMapList;
         List<Item> itemList;
 
